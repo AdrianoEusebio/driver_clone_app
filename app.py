@@ -10,6 +10,7 @@ from sync_worker import run_job
 load_dotenv()
 
 DATA_DIR   = os.getenv("DATA_DIR", "/data")
+OAUTHLIB_INSECURE_TRANSPORT = os.getenv("OAUTHLIB_INSECURE_TRANSPORT", "1")
 STATE_PATH = os.getenv("STATE_PATH", os.path.join(DATA_DIR, "state.json"))
 JOBS_DIR   = os.getenv("JOBS_DIR", os.path.join(DATA_DIR, "jobs"))
 LOGS_DIR   = os.getenv("LOGS_DIR", os.path.join(DATA_DIR, "logs"))
