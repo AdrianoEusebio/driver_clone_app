@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Drive Sync</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; margin: 2rem; }
+    .box { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; max-width: 720px; }
+    input, button { padding: .6rem .8rem; border-radius: 6px; border: 1px solid #ccc; }
+    label { font-weight: 600; display:block; margin-top: .5rem; }
+    .row { display:flex; gap: .5rem; align-items:center; }
+    .mt { margin-top: 1rem; }
+    .muted { color: #666; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

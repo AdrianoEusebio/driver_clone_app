@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Drive Sync</h2>
+
+{% if not authed %}
+  <p>Conecte sua conta Google para começar.</p>
+  <a href="/auth"><button>Conectar ao Google Drive</button></a>
+{% else %}
+  <form method="POST" action="/start">
+    <label>Origem (SRC_FOLDER_ID)</label>
+    <input type="text" name="src_id" placeholder="ex.: 1AbCd..." required />
+    <label>Destino (DEST_FOLDER_ID)</label>
+    <input type="text" name="dest_id" placeholder="ex.: 9XyZ..." required />
+    <div class="row mt">
+      <label class="muted">Repetir a cada (min, opcional)</label>
+      <input type="number" name="repeat_interval_min" min="0" placeholder="0" />
+    </div>
+    <div class="mt">
+      <button type="submit">Iniciar sincronização</button>
+    </div>
+  </form>
+{% endif %}
+{% endblock %}

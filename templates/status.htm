@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Status do Job</h3>
+<p><code id="jid">{{ job_id }}</code></p>
+
+<pre id="out" class="mt">carregando...</pre>
+
+<form method="POST" action="/cancel/{{ job_id }}" class="mt">
+  <button type="submit">Cancelar</button>
+</form>
+
+<script>
+const jid = document.getElementById("jid").textContent;
+const out = document.getElementById("out");
+
+async function tick(){
+  const r = await fetch(`/api/status/${jid}`, {cache: "no-store"});
+  if (!r.ok){ out.textContent = "job não encontrado"; return; }
+  const j = await r.json();
+  out.textContent = JSON.stringify(j, null, 2);
+  if (["completed","error","canceled"].includes(j.status)) return;
+  setTimeout(tick, 1500);
+}
+tick();
+</script>
+{% endblock %}
