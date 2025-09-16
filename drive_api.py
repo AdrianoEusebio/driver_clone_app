@@ -56,7 +56,8 @@ def list_children(drive, folder_id: str) -> Iterator[Dict]:
             break
 
 def ensure_folder(drive, parent_id: str, name: str) -> str:
-    q = f"'{parent_id}' in parents and name = '{name.replace(\"'\",\"\\'\")}' and mimeType = 'application/vnd.google-apps.folder' and trashed=false"
+    safe_name = name.replace("'", "\\'")
+    q = f"'{parent_id}' in parents and name = '{safe_name}' and mimeType = 'application/vnd.google-apps.folder' and trashed=false"
     resp = drive.files().list(q=q, fields="files(id)", supportsAllDrives=True, includeItemsFromAllDrives=True).execute()
     files = resp.get("files", [])
     if files:
